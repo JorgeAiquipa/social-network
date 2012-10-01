@@ -9,7 +9,9 @@ gem 'rails', '3.2.3'
 gem 'pg'
 gem 'thin'
 gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-twitter'
 gem 'koala'
+gem 'twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
