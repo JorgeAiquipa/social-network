@@ -1,0 +1,84 @@
+<div id='fb-root' />
+<script src='http://connect.facebook.net/es_ES/all.js#xfbml=1'/></script>
+<script type="text/javascript">
+  $(document).ready(function(e){
+    if (window.location.hash == '#_=_') {
+      window.location.hash = '';
+      history.pushState('', document.title, window.location.pathname);
+      e.preventDefault();
+    }
+  })
+</script>
+
+<div id="bluebar">
+  <div id="title">facebook example</div>
+</div>
+
+<div id="container">
+  <ul class="tabs">
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#friends">Friends</a></li>
+    <li><a href="#comments">Comments</a></li>
+  </ul>
+
+  <div class="tab_container">
+    <div id="profile" class="tab_content">
+
+      <% user = JSON.parse(@profile)[0] %>
+      <div class="subtitle">Profile</div>
+      <div class="label">Nombres:</div>
+      <div class="label-info"><%= user['first_name'] %> <%= user['middle_name'] %></div>
+      <div class="label">Apellidos:</div>
+      <div class="label-info"><%= user['last_name'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Birthday date:</div>
+      <div class="label-info"><%= user['birthday_date'] %></div>
+      <div class="label">Sex:</div>
+      <div class="label-info"><%= user['sex'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Activities:</div>
+      <div class="label-info" style="width: 700px"><%= user['activities'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Interests:</div>
+      <div class="label-info"><%= user['interests'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Music:</div>
+      <div class="label-info" style="width: 700px"><%= user['music'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Movies:</div>
+      <div class="label-info" style="width: 700px"><%= user['movies'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">Books:</div>
+      <div class="label-info" style="width: 700px"><%= user['books'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label">About me:</div>
+      <div class="label-info" style="width: 700px"><%= user['about_me'] %></div>
+      <div style="clear: both"></div>
+
+    </div>
+
+    <div id="friends" class="tab_content">
+      <% JSON.parse(@friends).each do |f| %>
+        <%= link_to f['profile_url'], :target => '_blank' do %> 
+          <div class="friend">
+            <div class="photo">
+              <%= image_tag f['pic_small'], :size => '50x50' %>
+            </div>
+            <div class="description"><%= f['name'] %></div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="comments" class="tab_content">
+      <fb:comments href='<%= facebook_url %>' colorscheme='light' num_posts='2' width='500' ></fb:comments>
+    </div>
+  </div>
+</div>
