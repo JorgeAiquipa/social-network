@@ -10,6 +10,12 @@ class FacebookController < ActionController::Base
   end
 
   def index
+
+    if session[:user_id].nil?
+      redirect_to 'http://carlos21.com/auth/facebook'
+      return
+    end
+
     user = User.find(session[:user_id])
     api = Koala::Facebook::API.new(user.oauth_token)
     
