@@ -1,0 +1,58 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "github", :media => "all" %>
+  <%= javascript_include_tag "github" %>
+<% end %>
+
+<div id="bar">
+  <div id="header">
+    <%= image_tag 'github-logo.png'%>
+  </div>
+</div>
+
+<div id="container">
+  <ul class="tabs">
+    <li><a href="#gists">Gists</a></li>
+    <li><a href="#repositories">Repositories</a></li>
+  </ul>
+
+  <div class="tab_container">
+
+    <!-- GISTS -->
+    <div id="gists" class="tab_content">
+      <% JSON.parse(@gists).each do |f| %>
+         
+          <div class="gist">
+            <div class="gist-id">
+              <%= link_to 'gist:' + f['id'], f['html_url'], :target => '_blank' %>
+              
+            </div>
+            <div class="gist-description">
+              <% f['files'].each do |key, value| %>
+                <%= value['filename']%>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      
+    </div>
+
+    <!-- REPOSITORIES -->
+    <div id="repositories" class="tab_content">
+      <% JSON.parse(@repositories).each do |f| %>
+         
+          <div class="repository">
+            <div class="icon"></div>
+            <div class="name">
+              <%= link_to f['name'], f['html_url'], :target => '_blank' %>
+            </div>
+            <div class="description">
+              <%= f['description'] %>
+            </div>
+            <div class="last-update">Last update <%= (DateTime.now.to_date - f['updated_at'].to_date).round %> days ago</div>
+          </div>
+        <% end %>
+      
+    </div>
+
+  </div>
+</div>

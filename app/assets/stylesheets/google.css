@@ -1,0 +1,117 @@
+body {
+  margin:0px;
+  padding:0px;
+}
+
+#bar {
+  background-color: whitesmoke;
+  height: 75px;
+  width: 100%;
+}
+
+#tab-bar {
+  height: 32px;
+  width: 100%;
+  background-color: #444;
+  position: absolute;
+}
+
+#header {
+  width: 900px;
+  margin: auto;
+  padding-top: 15px;
+  font-size: 20px;
+  height: 50px;
+  font-family: verdana;
+  color: #696969;
+}
+
+#email {
+  padding: 2px;
+  font-size: 11px;
+  font-weight: bold;
+  float: right;
+  margin-right: 5px;
+}
+
+#photo {
+  width: 35px;
+  height: 35px;
+  float: right;
+}
+
+#container {
+  width: 900px;
+  margin: auto;
+}
+
+.label-google {
+  border-left: 5px solid #dddddd;
+  background-color: whitesmoke;
+  padding: 4px;
+  width: 100px;
+  text-align: right;
+  float: left;
+  font-size: 12px;
+  font-family: verdana;
+}
+
+.label-google-info {
+  text-align: left;
+  padding: 4px;
+  float: left;
+  min-width: 300px;
+  font-size: 12px;
+  font-family: verdana;
+}
+
+
+ul.tabs {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px;
+  width: 100%;
+}
+
+ul.tabs li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  height: 32px;
+  line-height: 31px;
+  margin-bottom: -1px;
+  overflow: hidden;
+  position: relative;
+  background: #444;
+}
+
+ul.tabs li a {
+  text-decoration: none;
+  color: white;
+  display: block;
+  font-size: 13px;
+  font-family: verdana;
+  padding: 0 20px;
+  outline: none;
+}
+
+ul.tabs li a:hover {
+  
+}
+
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+  background: #696969;
+}
+
+.tab_container {
+  overflow: hidden;
+  clear: both;
+  float: left; width: 100%;
+  background: #fff;
+}
+.tab_content {
+  padding-top: 20px;
+  font-size: 1.2em;
+}

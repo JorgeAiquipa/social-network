@@ -1,22 +1,21 @@
 class FacebookController < ActionController::Base
   layout 'application'
-  helper_method :current_user
 
   def create
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
+    user = User.create_facebook_user_from_omniauth(env["omniauth.auth"])
+    session[:facebook_user_id] = user.id
 
     redirect_to facebook_url
   end
 
   def index
 
-    if session[:user_id].nil?
+    if session[:facebook_user_id].nil?
       redirect_to 'http://carlos21.com/auth/facebook'
       return
     end
 
-    user = User.find(session[:user_id])
+    user = User.find(session[:facebook_user_id])
     api = Koala::Facebook::API.new(user.oauth_token)
     
     # get profile
@@ -31,66 +30,6 @@ class FacebookController < ActionController::Base
     #@albums = api.get_object("/#{user.uid}/photos")
     @albums = api.get_object("/#{user.uid}/albums")
     #render text: @albums
-  end
-
-  def login
-    user = User.from_omniauth(env["omniauth.auth"])
-    session[:user_id] = user.id
-    #render text: 'pajeate mierda'
-    #respond_to do |format|
-    #  format.json do
-    #    render :json => user.to_json
-    #  end
-    #end
-  end
-
-  def failure
-    message_key = env['omniauth.error.type']
-    render text: message_key
-  end
-
-  def logout
-    session[:user_id] = nil
-    redirect_to root_url
-  end
-
-  def friends
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def friends2
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def serverside
-     respond_to do |format|
-      format.html
-    end
-  end
-
-  def serversidesuccess
-    render text: 'la hiciste mierda'
-  end
-
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def koala_login
-    
-  end
-
-  def koala
-    auth = env["omniauth.auth"]
-    
-    api = Koala::Facebook::API.new(auth.credentials.token)
-    graph_data = api.get_object("/#{auth.uid}/friends")
-
-    render json: graph_data
   end
 
 end

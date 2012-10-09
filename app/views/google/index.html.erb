@@ -1,0 +1,65 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "google", :media => "all" %>
+  <%= javascript_include_tag :google %>
+<% end %>
+
+
+<% user = JSON.parse(@profile) %>
+
+<div id="bar">
+  <div id="header">
+    <%= image_tag 'developers-logo.png' %>
+
+    <div id="photo">
+      <%= image_tag "https://plus.google.com/s2/photos/profile/#{user['id']}", :size => '35x35' %>      
+    </div>
+
+    <div id="email">
+      <%= user['email'] %>
+    </div>
+    
+  </div>
+</div>
+
+<div id="tab-bar"></div>
+
+<div id="container">
+  <ul class="tabs">
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#friends">Friends</a></li>
+  </ul>
+
+  <div class="tab_container">
+
+    <!-- PROFILE -->
+    <div id="profile" class="tab_content">
+
+      <div class="label-google">Nombres:</div>
+      <div class="label-google-info"><%= user['given_name'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-google">Apellidos:</div>
+      <div class="label-google-info"><%= user['family_name'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-google">Email:</div>
+      <div class="label-google-info"><%= user['email'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-google">Birthday date:</div>
+      <div class="label-google-info"><%= user['birthday'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-google">Sex:</div>
+      <div class="label-google-info"><%= user['gender'] %></div>
+      <div style="clear: both"></div>
+
+    </div>
+
+    <!-- FRIENDS -->
+    <div id="friends" class="tab_content">
+      
+    </div>
+
+  </div>
+</div>

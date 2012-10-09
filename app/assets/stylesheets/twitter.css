@@ -1,0 +1,140 @@
+body {
+  margin:0px;
+  padding:0px;
+}
+
+#bar {
+  background-color: #00A0D1;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+  height: 35px;
+  width: 100%;
+}
+
+#bird {
+  float: left;
+  width: 40px;
+  margin-top: 2px;
+}
+
+#header {
+  width: 900px;
+  margin: auto;
+}
+
+#title {
+  width: 100px;
+  float: left;
+  margin: auto;
+  font-size: 20px;
+  font-family: arial;
+  color: white;
+  line-height: 30px;
+  margin-top: 3px;
+}
+
+#friends {
+  width: 860px;
+  height: 500px;
+  overflow: auto;
+  font-size: 12px;
+  font-family: verdana;
+}
+
+.friend {
+  width: 260px;
+  padding: 5px;
+  float: left;
+  border: 1px solid #C4CDE0;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: #E7EBF2;
+}
+
+.photo {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.description {
+  width: 195px;
+  height: 40px;
+  vertical-align: middle;
+  float: left;
+  padding: 5px;
+}
+
+.subtitle {
+  color: #999;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #E7EBF2;
+  padding: 4px;
+  width: 100%;
+  border-top: 1px solid #C4CDE0;
+}
+
+.label-twitter {
+  color: #999;
+  font-weight: bold;
+  font-size: 13px;
+  float: left;
+  padding: 5px;
+  text-align: right;
+  min-width: 100px;
+  width: 100px;
+}
+
+.label-info-twitter {
+  color: #3B5998;
+  float: left;
+  padding: 5px;
+  font-size: 13px;
+  text-align: left;
+  min-width: 100px;
+  width: 100px;
+}
+
+#content-div {
+  width: 900px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.tweet {
+  width: 100%;
+  
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 15px;
+  overflow: auto;
+}
+
+.nickname {
+  color: #CCC;
+  float: left;
+  width: 100px;
+}
+
+.photo {
+  float: left;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.name {
+  font-size: 12;
+  font-weight: bold;
+  float: left;
+  width: 100px;
+}
+
+.description {
+  width: 90%;
+  height: 40px;
+  vertical-align: middle;
+  float: left;
+  padding: 5px;
+  padding-left: 0px;
+}

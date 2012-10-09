@@ -7,8 +7,8 @@ body {
 #bluebar {
   border-bottom: 1px solid #133783;
   background-color: #3B5998;
-  height: 28px;
-  padding-top: 4px;
+  height: 27px;
+  padding-top: 5px;
   width: 100%;
 }
 
@@ -16,7 +16,6 @@ body {
   width: 900px;
   margin: auto;
   font-size: 20px;
-  font-weight: bold;
   font-family: verdana;
   color: white;
 }
@@ -61,6 +60,7 @@ body {
   padding: 4px;
   width: 100%;
   border-top: 1px solid #C4CDE0;
+  margin-bottom: 10px;
 }
 
 .label {
@@ -82,4 +82,84 @@ body {
   text-align: left;
   min-width: 100px;
   width: 100px;
+}
+
+#container {
+  width: 900px;
+  margin: auto;
+}
+
+#options {
+  width: 430px;
+  height: 150px;
+  margin: auto;
+}
+
+#options div {
+  width: 100px;
+  height: 100px;
+  float:left;
+  margin-right: 10px;
+}
+
+#options div:last-child {
+  margin-right: 0px;
+}
+
+ul.tabs {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px;
+  border-bottom: 1px solid #999;
+  border-left: 1px solid #999;
+  width: 100%;
+  margin-top: 30px;
+}
+
+ul.tabs li {
+  float: left;
+  margin: 0;
+  padding: 0;
+  height: 31px;
+  line-height: 31px;
+  border: 1px solid #999;
+  border-left: none;
+  margin-bottom: -1px;
+  overflow: hidden;
+  position: relative;
+  background: #D8DFEA;
+}
+
+ul.tabs li a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  font-size: 15px;
+  font-family: verdana;
+  padding: 0 20px;
+  outline: none;
+}
+
+ul.tabs li a:hover {
+  background: #E7EBF2;
+}
+
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+  background: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.tab_container {
+  border: 1px solid #999;
+  border-top: none;
+  overflow: hidden;
+  clear: both;
+  float: left; width: 100%;
+  background: #fff;
+}
+.tab_content {
+  padding: 20px;
+  font-size: 1.2em;
 }

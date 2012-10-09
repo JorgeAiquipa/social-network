@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "facebook", :media => "all" %>
+  <%= javascript_include_tag :facebook %>
+
+  <meta property="og:title" content="facebook example" />
+  <meta property="og:url" content="<%= facebook_url %>"; />
+<% end %>
+
 <div id='fb-root' />
 <script src='http://connect.facebook.net/es_ES/all.js#xfbml=1'/></script>
 <script type="text/javascript">
@@ -11,7 +19,7 @@
 </script>
 
 <div id="bluebar">
-  <div id="title">facebook example</div>
+  <div id="title">facebook</div>
 </div>
 
 <div id="container">

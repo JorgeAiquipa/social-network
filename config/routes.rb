@@ -2,19 +2,22 @@ Socialnetworks::Application.routes.draw do
   root to: 'main#index'
 
   match '/auth/facebook/callback', to: 'facebook#create'
-  match 'auth/:provider/callback', to: 'facebook#koala'
+  match '/auth/twitter/callback', to: 'twitter#create'
+  match '/auth/github/callback', to: 'github#create'
+  match 'google/authenticate', to: 'google#authenticate'
+
+  match 'oauth2authorize', to: 'google#oauth2authorize'
+  match 'oauth2callback', to: 'google#oauth2callback'
+
   match 'auth/failure', to: 'facebook#failure'
   match 'signout', to: 'sessions#destroy', as: 'signout'
 
-  match 'sayhello', to: 'facebook#sayhello', as: 'sayhello'
-  match 'login', to: 'facebook#login', as: 'login'
-  match 'test', to: 'facebook#test', as: 'test'
-  match 'friends', to: 'facebook#friends', as: 'friends'
-  match 'friends2', to: 'facebook#friends2', as: 'friends2'
-  match 'serverside', to: 'facebook#serverside', as: 'serverside'
-  match 'serversidesuccess', to: 'facebook#serversidesuccess', as: 'serversidesuccess'
-  match 'koala', to: 'facebook#koala', as: 'koala'
   match 'facebook', to: 'facebook#index', as: 'facebook'
+  match 'twitter', to: 'twitter#index', as: 'twitter'
+  match 'github', to: 'github#index', as: 'github'
+  match 'google', to: 'google#index', as: 'google'
+
+  match 'github/delete_gist/:id', to: 'github#delete_gist', as: 'delete_gist'
 
   #dark_zeratul64@hotmail.com
 

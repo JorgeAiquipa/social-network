@@ -1,0 +1,67 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "twitter", :media => "all" %>
+  <%= stylesheet_link_tag    "bootstrap/css/bootstrap" %>
+  <%= javascript_include_tag "twitter" %>
+  <%= javascript_include_tag "bootstrap/js/bootstrap" %>
+<% end %>
+
+<div id="bar">
+  <div id="header">
+    <div id="bird">
+      <%= image_tag 'twitter_bird.jpg', :size => '40x30' %>
+    </div>
+  <div id="title">Twitter</div>
+  </div>
+</div>
+
+<div id="content-div">
+
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#profile">Profile</a></li>
+    <li><a href="#tweets">Tweets</a></li>
+  </ul>
+   
+  <div class="tab-content">
+    
+    <div class="tab-pane active" id="profile">
+      <% user = JSON.parse(@profile) %>
+
+      <div class="label-twitter">Photo:</div>
+      <div class="label-info-twitter">
+        <%= image_tag user['profile_image_url'] %>
+      </div>
+      <div style="clear: both"></div>
+
+      <div class="label-twitter">Nombre</div>
+      <div class="label-info-twitter"><%= user['name'] %></div>
+      <div class="label-twitter">Username:</div>
+      <div class="label-info-twitter"><%= user['screen_name'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-twitter">Location:</div>
+      <div class="label-info-twitter"><%= user['location'] %></div>
+      <div class="label-twitter">Followers:</div>
+      <div class="label-info-twitter"><%= user['followers_count'] %></div>
+      <div style="clear: both"></div>
+
+      <div class="label-twitter">Description:</div>
+      <div class="label-info-twitter"><%= user['description'] %></div>
+      <div style="clear: both"></div>
+    </div>
+
+    <div class="tab-pane" id="tweets">
+      <% JSON.parse(@tweets).each do |f| %> 
+        <div class="tweet">
+          <div class="photo">
+            <%= image_tag f['user']['profile_image_url'] %>
+          </div>
+          <div class="name"><%=f['user']['name']%></div>
+          <div class="nickname">@<%=f['user']['screen_name']%></div>
+          <div class="description"><%= f['text'] %></div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>

@@ -8,10 +8,16 @@ gem 'rails', '3.2.3'
 #gem 'sqlite3'
 gem 'pg'
 gem 'thin'
+gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-identity'
+gem 'google-api-client'
 gem 'koala'
 gem 'twitter'
+gem 'httparty'
 
 # Gems used only for assets and not required
 # in production environments by default.
