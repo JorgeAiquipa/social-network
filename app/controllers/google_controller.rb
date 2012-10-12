@@ -12,7 +12,7 @@ class GoogleController < ActionController::Base
     @client.authorization.client_id = '296124660908.apps.googleusercontent.com'
     @client.authorization.client_secret = 'M8IkiHI6GpQb7MzrZ1cQxQn9'
     @client.authorization.scope = 'https://www.googleapis.com/auth/userinfo.profile+https://www.googleapis.com/auth/userinfo.email'
-    @client.authorization.redirect_uri = 'http://localhost:9000/oauth2callback'
+    @client.authorization.redirect_uri = 'http://socialnetworks.carlos21.com/oauth2callback'
     @client.authorization.code = params[:code] if params[:code]
 
     if session[:google_user_id]
