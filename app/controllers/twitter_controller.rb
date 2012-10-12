@@ -12,7 +12,7 @@ class TwitterController < ActionController::Base
 
     redirect_to twitter_url
     #raise env["omniauth.auth"].to_json
-
+    
   end
 
   def index

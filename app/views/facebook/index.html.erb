@@ -6,8 +6,11 @@
   <meta property="og:url" content="<%= facebook_url %>"; />
 <% end %>
 
+<!-- USADO POR FACEBOOK -->
 <div id='fb-root' />
 <script src='http://connect.facebook.net/es_ES/all.js#xfbml=1'/></script>
+
+<!-- REMOVER EL ANCLA QUE FACEBOOK AGREGA -->
 <script type="text/javascript">
   $(document).ready(function(e){
     if (window.location.hash == '#_=_') {
@@ -32,6 +35,7 @@
   <div class="tab_container">
     <div id="profile" class="tab_content">
 
+      <!-- PROFILE DEL USUARIO -->
       <% user = JSON.parse(@profile)[0] %>
       <div class="subtitle">Profile</div>
       <div class="label">Nombres:</div>
@@ -73,6 +77,8 @@
     </div>
 
     <div id="friends" class="tab_content">
+
+      <!-- FRIENDS -->
       <% JSON.parse(@friends).each do |f| %>
         <%= link_to f['profile_url'], :target => '_blank' do %> 
           <div class="friend">
@@ -83,10 +89,14 @@
           </div>
         <% end %>
       <% end %>
+
     </div>
 
     <div id="comments" class="tab_content">
+
+      <!-- COMENTARIOS -->
       <fb:comments href='<%= facebook_url %>' colorscheme='light' num_posts='2' width='500' ></fb:comments>
+      
     </div>
   </div>
 </div>
