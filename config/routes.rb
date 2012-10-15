@@ -17,6 +17,10 @@ Socialnetworks::Application.routes.draw do
   match 'github', to: 'github#index', as: 'github'
   match 'google', to: 'google#index', as: 'google'
 
+  match 'googlemaps', to: 'position#index', as: 'positions'
+  match 'position/save', to: 'position#save', as: 'save_position'
+  match 'position/delete/:id', to: 'position#delete', as: 'delete_position'
+
   match 'github/delete_gist/:id', to: 'github#delete_gist', as: 'delete_gist'
 
   #dark_zeratul64@hotmail.com

@@ -1,0 +1,18 @@
+<table id="positions" class="table table-bordered table-striped">
+  <tr>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Show</td>
+    <td>Edit</td>
+    <td>Delete</td>
+  </tr>
+  <% @positions.each do |p| %>
+    <tr>
+      <td style="width: 100px"><label><%= p.name %></label></td>
+      <td><label><%= p.description %></label></td>
+      <td style="width: 80px"><%= link_to 'Show', "javascript:show_position(#{p.lat}, #{p.lng})" %></td>
+      <td style="width: 80px"><%= link_to 'Edit', "#", :onclick => "edit_position(this, #{p.id}, #{p.lat}, #{p.lng})" %></td>
+      <td style="width: 80px"><%= link_to 'Destroy', "javascript:delete_position(#{p.id})" %></td>
+    </tr>
+  <% end %>
+</table>

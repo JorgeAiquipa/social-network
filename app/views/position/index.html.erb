@@ -1,0 +1,291 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag    "bootstrap/css/bootstrap" %>
+  <%= stylesheet_link_tag    "googlemaps" %>
+  <style type="text/css">
+    html { height: 100% }
+    body { height: 100%; margin: 0px; padding: 0px }
+    #map_canvas { height: 100% }
+  </style>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript">
+
+    var map;
+    var marker;
+    var id = 0;
+    var lat;
+    var lng;
+
+    function initialize() {
+      map = null;
+
+      var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+      var myOptions = {
+        zoom: 4,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      
+      google.maps.event.addListener(map, 'click', function(event) {
+        if (marker == null) {
+          placeMarker(event.latLng.lat(), event.latLng.lng());  
+        }
+      });
+
+    }
+      
+    function placeMarker(latitude, longitude) {
+      lat = latitude;
+      lng = longitude;
+      var location = new google.maps.LatLng(lat, lng);
+
+      marker = new google.maps.Marker({
+          position: location, 
+          map: map,
+          draggable: true
+      });
+    }
+
+    function new_position() {
+      if (marker) {
+        marker.setMap(null);
+      }
+
+      marker = null;
+      id = 0;
+
+      // get the table
+      table = document.getElementById('positions');
+
+      // create tr
+      row = document.createElement('tr');
+
+      // cells
+      name_cell = document.createElement('td');
+      description_cell = document.createElement('td');
+      edit_cell = document.createElement('td');
+      delete_cell = document.createElement('td');
+
+      // name
+      text_name = document.createElement('input');
+      text_name.className = 'name-input';
+      text_name.id = 'new-name';
+      text_name.type = 'text';
+      text_name.name = 'name';
+      text_name.style.marginBottom = '0px';
+      name_cell.appendChild(text_name);
+
+      // description
+      text_description = document.createElement('input');
+      text_description.id = 'new-description';
+      text_description.className = 'description-input';
+      text_description.type = 'text';
+      text_description.name = 'name';
+      text_description.style.marginBottom = '0px';
+      description_cell.appendChild(text_description);
+
+      row.appendChild(name_cell);
+      row.appendChild(description_cell);
+      row.appendChild(edit_cell);
+      row.appendChild(delete_cell);
+      table.appendChild(row);
+
+      add_button = document.getElementById('add');
+      save_button = document.getElementById('save');
+      cancel_button = document.getElementById('cancel');
+
+      add_button.style.display = 'none';
+      save_button.style.display = 'block';
+      cancel_button.style.display = 'block';
+    }
+
+    function edit_position(link, idPos, latPos, lngPos) {
+
+      if (id) {return;}
+
+      // load fields
+      id = idPos;
+      lat = latPos;
+      lng = lngPos;
+
+      // destroy current marker
+      if (marker) { marker.setMap(null); }
+
+      // set a marker for the selected position
+      placeMarker(latPos, lngPos);
+
+      // hide and show buttons
+      add_button = document.getElementById('add');
+      save_button = document.getElementById('save');
+      cancel_button = document.getElementById('cancel');
+
+      add_button.style.display = 'none';
+      save_button.style.display = 'block';
+      cancel_button.style.display = 'block';
+
+      current_cell = link.parentNode;
+      current_row = current_cell.parentNode;
+      cells = current_row.getElementsByTagName('td');
+      $(cells[0]).find("label").css('display', 'none');
+      $(cells[1]).find("label").css('display', 'none');
+
+      // name
+      text_name = document.createElement('input');
+      text_name.id = 'new-name';
+      text_name.className = 'name-input';
+      text_name.type = 'text';
+      text_name.name = 'name';
+      text_name.value = $(cells[0]).find("label").html();
+      text_name.style.marginBottom = '0px';
+      cells[0].appendChild(text_name);
+
+      // description
+      text_description = document.createElement('input');
+      text_description.id = 'new-description';
+      text_description.className = 'description-input';
+      text_description.type = 'text';
+      text_description.name = 'name';
+      text_description.value = $(cells[1]).find("label").html();
+      text_description.style.marginBottom = '0px';
+      cells[1].appendChild(text_description);
+
+      // create event for the new marker
+      google.maps.event.addListener(marker, 'dragend', function(event){
+        lat = event.latLng.lat();
+        lng = event.latLng.lng();
+
+        console.log(lat);
+        console.log(lng);
+      });
+    }
+
+    function clearFields() {
+      // clear fields
+      marker = null;
+      id = null;
+      lat = null;
+      lng = null;
+
+      // hide and show buttons
+      add_button = document.getElementById('add');
+      save_button = document.getElementById('save');
+      cancel_button = document.getElementById('cancel');
+
+      add_button.style.display = 'block';
+      save_button.style.display = 'none';
+      cancel_button.style.display = 'none';
+
+    }
+
+    function cancel() {
+      if (id == 0) {
+        // delete the row
+        text_name = document.getElementById('new-name');
+        current_cell = text_name.parentNode;
+        current_row = current_cell.parentNode;
+        remove(current_row);
+      } else {
+        // search for textboxes to delete them
+        text_name = document.getElementById('new-name');
+        text_description = document.getElementById('new-description');
+        if(text_name) {
+          current_cell = text_name.parentNode;
+          current_row = current_cell.parentNode;
+          cells = current_row.getElementsByTagName('td');
+          $(cells[0]).find("label").css("display", "block");
+          $(cells[1]).find("label").css("display", "block");
+          remove(text_name);
+          remove(text_description);
+        }
+      }
+
+      clearFields();
+    }
+
+    function show_position(lat, lng) {
+      // destroy current marker
+      if (marker) { marker.setMap(null); }
+
+      // set a marker for the selected position
+      placeMarker(lat, lng);
+    }
+
+    function save_position() {
+      $.ajax({
+        type: 'post',
+        url: 'http://localhost:9000/position/save',
+        data: {
+          id: id,
+          name: $("#new-name").val(),
+          description: $("#new-description").val(),
+          lat: lat,
+          lng: lng
+        },
+        success: function(html) {
+          $("#table-div").html(html);
+          if (marker) {marker.setMap(null);}
+          clearFields();
+        }
+      });
+    }
+
+    function delete_position(id) {
+      // call AJAX
+      $.ajax({
+        type: 'post',
+        url: '/position/delete/' + id,
+        data: {},
+        success: function(html) {
+          $("#table-div").html(html);
+          if (marker) {marker.setMap(null);}
+          clearFields();
+        }
+      });
+    }
+
+    function removeMap(){
+      remove(document.getElementById("map_canvas"));
+    }
+
+    function remove(selection){
+      selection.parentNode.removeChild(selection);
+    }
+
+    $(document).ready(function(){
+      initialize();
+    });
+
+  </script>
+<% end %>
+
+<body>
+
+  <div id="content">
+    <div>
+      <h1>Google Maps API</h1>
+    </div>
+
+    <div id='map_canvas' style='width: 300px; height: 300px'></div>
+
+    <div id="table-div">
+      <%= render :partial => 'position/list', :locals => {:positions => @positions} %>
+    </div>
+
+    <div class="button">
+      <button id="add" class="btn btn-inverse" onclick="new_position()" style="display:">Add</button>
+    </div>
+
+    <div class="button">
+      <button id="save" class="btn btn-inverse" onclick="save_position()">Save</button>
+    </div>
+
+    <div class="button">
+      <button id="cancel" class="btn btn-inverse" onclick="cancel()">Cancel</button>
+    </div>
+
+  </div>
+  
+
+</body>
+</html>

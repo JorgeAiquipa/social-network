@@ -1,0 +1,18 @@
+#content {
+  width: 900px;
+  margin: auto;
+  overflow: auto;
+}
+
+.name-input {
+  width: 90px;
+}
+
+.description-input {
+  width: 98%;
+}
+
+.button {
+  float : left;
+  margin-right: 10px;
+}

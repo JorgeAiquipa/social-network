@@ -53,4 +53,8 @@ class GoogleController < ActionController::Base
     #render text: @profile
   end
 
+  def show_map
+    render 'google/googlemaps'
+  end
+
 end
